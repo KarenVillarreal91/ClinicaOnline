@@ -1,0 +1,50 @@
+<div style="text-align: center;">
+  <img class="rotate-center" src="../../../assets/logo.png" width="80px" style="margin-top: 20px;" *ngIf="spinner">
+  <img src="../../../assets/logo.png" width="80px" style="margin-top: 20px;" *ngIf="!spinner">
+</div>
+
+<div class="container" id="container">
+	<div class="form-container sign-in-container">
+		<form [formGroup]="form" (ngSubmit)="Login()">
+			<h1>Log in</h1>
+
+			<label>Correo electrónico</label>
+      <small class="invalid" *ngIf="form.controls['email'].errors?.['required'] && form.controls['email'].touched
+        || form.controls['email'].errors?.['email']">
+        Email inválido.
+      </small>
+      <input type="email" id="email" formControlName="email">
+
+			<label>Contraseña</label>
+      <small class="invalid" *ngIf="form.controls['clave'].errors?.['required'] && form.controls['clave'].touched">
+        Contraseña inválida.
+      </small>
+      <input type="password" id="clave" formControlName="clave">
+
+			<button type="submit" class="ingreso">Ingresar</button>
+
+      <span>Ingreso rápido</span>
+      <div class="rapido-container">
+				<a (click)='InicioAutomatico("paciente@paciente.com","123asd")' class="rapido">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          </svg>
+        </a>
+				<a (click)='InicioAutomatico("especialista@especialista.com","123asd")' class="rapido">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart-pulse-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.475 9C2.702 10.84 4.779 12.871 8 15c3.221-2.129 5.298-4.16 6.525-6H12a.5.5 0 0 1-.464-.314l-1.457-3.642-1.598 5.593a.5.5 0 0 1-.945.049L5.889 6.568l-1.473 2.21A.5.5 0 0 1 4 9H1.475ZM.879 8C-2.426 1.68 4.41-2 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C11.59-2 18.426 1.68 15.12 8h-2.783l-1.874-4.686a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.88Z"/>
+          </svg>
+        </a>
+			</div>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-right">
+				<h3>¿Necesitas una cuenta?</h3>
+        <p>Regístrese como paciente o especialista según corresponda.</p>
+				<button class="ingreso ghost" id="signUp" routerLink="../registro">Registrarse</button>
+			</div>
+		</div>
+	</div>
+</div>

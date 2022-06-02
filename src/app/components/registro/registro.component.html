@@ -1,0 +1,149 @@
+<div style="text-align: center;">
+  <img class="rotate-center" src="../../../assets/logo.png" width="80px" style="margin-top: 20px;" *ngIf="spinner">
+  <img src="../../../assets/logo.png" width="80px" style="margin-top: 20px;" *ngIf="!spinner">
+</div>
+
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form [formGroup]="formEspecialista" (ngSubmit)="RegistroEspecialista()">
+			<h2 style="margin-bottom: 40px">Registro especialista</h2>
+            <label>Nombre</label>
+            <small class="invalid" *ngIf="formEspecialista.controls['nombre'].errors?.['required'] && formEspecialista.controls['nombre'].touched">
+                Nombre inválido.
+            </small>
+            <input type="text" formControlName="nombre"/>
+
+            <label>Apellido</label>
+            <small class="invalid" *ngIf="formEspecialista.controls['apellido'].errors?.['required'] && formEspecialista.controls['apellido'].touched">
+                Apellido inválido.
+            </small>
+            <input type="text" formControlName="apellido"/>
+
+            <label>Edad</label>
+            <small class="invalid" *ngIf="formEspecialista.controls['edad'].errors?.['required'] && formEspecialista.controls['edad'].touched
+             || (formEspecialista.controls['edad'].errors?.['min'] || formEspecialista.controls['edad'].errors?.['max'])">
+              Edad inválida.
+             </small>
+            <input type="number" formControlName="edad"/>
+
+            <label>DNI</label>
+            <small class="invalid" *ngIf="formEspecialista.controls['dni'].errors?.['required'] && formEspecialista.controls['dni'].touched
+             || (formEspecialista.controls['dni'].errors?.['min'] || formEspecialista.controls['dni'].errors?.['max'])">
+              DNI inválido.
+             </small>
+            <input type="number" formControlName="dni"/>
+
+            <label>Especialidad</label>
+            <small class="invalid" *ngIf="this.formEspecialista.value.especialidad == ''">
+                Seleccione o ingrese.
+            </small>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <select class="form-select" id="selectorEsp" (change)="Seleccionar()">
+                        <option value="" selected>Seleccione</option>
+                        <option *ngFor="let esp of especialidades" [value]="esp.nombre">{{esp.nombre}}</option>
+                    </select>
+                </div>
+                <input type="text" class="form-control" placeholder="o ingrese" [value]="this.formEspecialista.value.especialidad" formControlName="especialidad">
+            </div>
+
+            <label>Correo electrónico</label>
+              <small class="invalid" *ngIf="formEspecialista.controls['email'].errors?.['required'] && formEspecialista.controls['email'].touched
+                || formEspecialista.controls['email'].errors?.['email']">
+                Email inválido.
+              </small>
+            <input type="email" formControlName="email"/>
+        
+            <label>Contraseña</label>
+              <small class="invalid" *ngIf="formEspecialista.controls['clave'].errors?.['required'] && formEspecialista.controls['clave'].touched">
+                Contraseña inválida.
+              </small>
+            <input type="password" formControlName="clave"/>
+            
+            <label>Imágen de perfil</label>
+              <small class="invalid" *ngIf="formEspecialista.controls['foto'].errors?.['required'] && formEspecialista.controls['foto'].touched">
+                Seleccione una imágen.
+              </small>
+            <input type="file" accept="image/*" (change)="SubirFoto1($event)" formControlName="foto"/>
+              
+			<button style="margin-top: 40px" [disabled]="formEspecialista.invalid">Continuar</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form [formGroup]="formPaciente" (ngSubmit)="RegistroPaciente()">
+			<h2 style="margin-bottom: 40px">Registro paciente</h2>
+
+			<label>Nombre</label>
+            <small class="invalid" *ngIf="formPaciente.controls['nombre'].errors?.['required'] && formPaciente.controls['nombre'].touched">
+                Nombre inválido.
+            </small>
+            <input type="text" formControlName="nombre"/>
+
+            <label>Apellido</label>
+            <small class="invalid" *ngIf="formPaciente.controls['apellido'].errors?.['required'] && formPaciente.controls['apellido'].touched">
+                Apellido inválido.
+            </small>
+            <input type="text" formControlName="apellido"/>
+
+            <label>Edad</label>
+            <small class="invalid" *ngIf="formPaciente.controls['edad'].errors?.['required'] && formPaciente.controls['edad'].touched
+             || (formPaciente.controls['edad'].errors?.['min'] || formPaciente.controls['edad'].errors?.['max'])">
+              Edad inválida.
+             </small>
+            <input type="number" formControlName="edad"/>
+
+            <label>DNI</label>
+            <small class="invalid" *ngIf="formPaciente.controls['dni'].errors?.['required'] && formPaciente.controls['dni'].touched
+             || (formPaciente.controls['dni'].errors?.['min'] || formPaciente.controls['dni'].errors?.['max'])">
+              DNI inválido.
+             </small>
+            <input type="number" formControlName="dni"/>
+
+            <label>Obra social</label>
+            <small class="invalid" *ngIf="formPaciente.controls['obra'].errors?.['required'] && formPaciente.controls['obra'].touched">
+                Obra social inválida.
+            </small>
+            <input type="text" formControlName="obra">
+
+            <label>Correo electrónico</label>
+              <small class="invalid" *ngIf="formPaciente.controls['email'].errors?.['required'] && formPaciente.controls['email'].touched
+                || formPaciente.controls['email'].errors?.['email']">
+                Email inválido.
+              </small>
+            <input type="email" formControlName="email"/>
+        
+            <label>Contraseña</label>
+              <small class="invalid" *ngIf="formPaciente.controls['clave'].errors?.['required'] && formPaciente.controls['clave'].touched">
+                Contraseña inválida.
+              </small>
+            <input type="password" formControlName="clave"/>
+            
+            <label>Imágenes de perfil</label>
+              <small class="invalid" *ngIf="formPaciente.controls['foto1'].errors?.['required'] && formPaciente.controls['foto1'].touched">
+                Seleccione una imágen.
+              </small>
+            <input type="file" accept="image/*" (change)="SubirFoto1($event)" formControlName="foto1"/>
+
+              <small class="invalid" style="margin-top: 0;" *ngIf="formPaciente.controls['foto2'].errors?.['required'] && formPaciente.controls['foto2'].touched">
+                Seleccione una imágen.
+              </small>
+            <input type="file" accept="image/*" (change)="SubirFoto2($event)" formControlName="foto2"/>
+
+			<button style="margin-top: 40px" [disabled]="formPaciente.invalid">Continuar</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h3>¿Necesitas una cuenta de paciente?</h3>
+				<p></p>
+				<button class="ghost" id="signIn">Paciente</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h3>¿Necesitas una cuenta de especialista?</h3>
+				<p></p>
+				<button class="ghost" id="signUp">Especialista</button>
+			</div>
+		</div>
+	</div>
+</div>
