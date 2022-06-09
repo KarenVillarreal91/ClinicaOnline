@@ -21,13 +21,14 @@ body {
 }
 
 h2, h3 {
-	font-weight: bold;
+	font-weight: 500;
 	margin: 0;
     margin-bottom: 25px;
     margin-top: 20px;
 }
 
 h2 {
+	font-weight: bold;
 	text-align: center;
 }
 
@@ -106,14 +107,6 @@ input {
 	width: 100%;
 }
 
-select {
-	background-color: #dbdbdb;
-	border: none;
-	padding: 12px 15px;
-	margin: 8px 0;
-	width: 130px;
-}
-
 .container {
 	background-color: #fff;
 	border-radius: 10px;
@@ -121,9 +114,9 @@ select {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 768px;
+	width: 860px;
 	max-width: 100%;
-	min-height: 1045px;
+	min-height: 1145px;
     margin-top: 30px;
 	margin-bottom: 80px;
 }
@@ -237,47 +230,6 @@ select {
 .container.right-panel-active .overlay-right {
 	transform: translateX(20%);
 }
-
-.social-container {
-	margin: 20px 0;
-}
-
-.social-container a {
-	border: 1px solid #DDDDDD;
-	border-radius: 50%;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0 5px;
-	height: 40px;
-	width: 40px;
-}
-
-footer {
-    background-color: #222;
-    color: #fff;
-    font-size: 14px;
-    bottom: 0;
-    position: fixed;
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 999;
-}
-
-footer p {
-    margin: 10px 0;
-}
-
-footer i {
-    color: red;
-}
-
-footer a {
-    color: #3c97bf;
-    text-decoration: none;
-}
-
 
 .rotate-center {
 	-webkit-animation: rotate-center 1s ease-in-out infinite both;

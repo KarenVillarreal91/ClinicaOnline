@@ -33,19 +33,14 @@
              </small>
             <input type="number" formControlName="dni"/>
 
-            <label>Especialidad</label>
-            <small class="invalid" *ngIf="this.formEspecialista.value.especialidad == ''">
+            <label>Seleccione una especialidad</label>
+            <div class="input-group mb-3">
+              <app-especialidades (especialidadSeleccionadaEmitter)="SeleccionarEsp($event)"></app-especialidades>
+            </div>
+            <small class="invalid" *ngIf="formEspecialista.controls['especialidad'].errors?.['required'] && formEspecialista.controls['especialidad'].touched">
                 Seleccione o ingrese.
             </small>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <select class="form-select" id="selectorEsp" (change)="Seleccionar()">
-                        <option value="" selected>Seleccione</option>
-                        <option *ngFor="let esp of especialidades" [value]="esp.nombre">{{esp.nombre}}</option>
-                    </select>
-                </div>
-                <input type="text" class="form-control" placeholder="o ingrese" [value]="this.formEspecialista.value.especialidad" formControlName="especialidad">
-            </div>
+            <input type="text" class="form-control" placeholder="o ingrese una nueva" [value]="this.formEspecialista.value.especialidad" formControlName="especialidad">
 
             <label>Correo electrónico</label>
               <small class="invalid" *ngIf="formEspecialista.controls['email'].errors?.['required'] && formEspecialista.controls['email'].touched
@@ -64,8 +59,9 @@
               <small class="invalid" *ngIf="formEspecialista.controls['foto'].errors?.['required'] && formEspecialista.controls['foto'].touched">
                 Seleccione una imágen.
               </small>
-            <input type="file" accept="image/*" (change)="SubirFoto1($event)" formControlName="foto"/>
-              
+            <input type="file" class="form-control" accept="image/*" (change)="SubirFoto1($event)" formControlName="foto"/>
+      <br>
+      <re-captcha (resolved)="CatpchaEsp($event)" siteKey="6LesaEwgAAAAABhNIKhuqEN7MfJDEEgSsD18Lnkz"></re-captcha>
 			<button style="margin-top: 40px" [disabled]="formEspecialista.invalid">Continuar</button>
 		</form>
 	</div>
@@ -122,27 +118,26 @@
               <small class="invalid" *ngIf="formPaciente.controls['foto1'].errors?.['required'] && formPaciente.controls['foto1'].touched">
                 Seleccione una imágen.
               </small>
-            <input type="file" accept="image/*" (change)="SubirFoto1($event)" formControlName="foto1"/>
+            <input type="file" class="form-control" accept="image/*" (change)="SubirFoto1($event)" formControlName="foto1"/>
 
               <small class="invalid" style="margin-top: 0;" *ngIf="formPaciente.controls['foto2'].errors?.['required'] && formPaciente.controls['foto2'].touched">
                 Seleccione una imágen.
               </small>
-            <input type="file" accept="image/*" (change)="SubirFoto2($event)" formControlName="foto2"/>
-
+            <input type="file" class="form-control" accept="image/*" (change)="SubirFoto2($event)" formControlName="foto2"/>
+      <br>
+      <re-captcha (resolved)="CatpchaPac($event)" siteKey="6LesaEwgAAAAABhNIKhuqEN7MfJDEEgSsD18Lnkz"></re-captcha>
 			<button style="margin-top: 40px" [disabled]="formPaciente.invalid">Continuar</button>
 		</form>
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h3>¿Necesitas una cuenta de paciente?</h3>
-				<p></p>
-				<button class="ghost" id="signIn">Paciente</button>
-			</div>
-			<div class="overlay-panel overlay-right">
-				<h3>¿Necesitas una cuenta de especialista?</h3>
-				<p></p>
-				<button class="ghost" id="signUp">Especialista</button>
+			<div class="overlay-panel overlay-left ghost" id="signIn">
+        <h3>¿Necesitas una cuenta de paciente?</h3>
+        <img src="../../../assets/user.png" width="180px">
+        </div>
+        <div class="overlay-panel overlay-right ghost" id="signUp">
+          <h3>¿Necesitas una cuenta de especialista?</h3>
+          <img src="../../../assets/esp.png" width="180px">
 			</div>
 		</div>
 	</div>

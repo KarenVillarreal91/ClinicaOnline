@@ -1,0 +1,17 @@
+.esp{
+    display: inline-flex;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.card-body{
+    padding: 10px;
+    &:hover{
+		background-color: darken($color: #ffffff, $amount: 10);
+        cursor:pointer;
+	}
+    &:active{
+	    transform: scale(0.95);
+    }
+}
+

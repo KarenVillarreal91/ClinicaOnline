@@ -10,7 +10,18 @@ import { BienvenidaComponent } from './pages/bienvenida/bienvenida.component';
 import { environment } from 'src/environments/environment.prod';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { AltaAdminComponent } from './components/alta-admin/alta-admin.component';
 import { HomeComponent } from './components/home/home.component';
+import { EspecialistasComponent } from './components/especialistas/especialistas.component';
+import { PacientesComponent } from './components/pacientes/pacientes.component';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { MisTurnosComponent } from './components/mis-turnos/mis-turnos.component';
+import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component';
+import { EspecialidadesComponent } from './components/especialidades/especialidades.component';
+import { MiPerfilComponent } from './components/mi-perfil/mi-perfil.component';
+import { MisHorariosComponent } from './components/mis-horarios/mis-horarios.component';
+import { TurnosComponent } from './components/turnos/turnos.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +29,17 @@ import { HomeComponent } from './components/home/home.component';
     BienvenidaComponent,
     LoginComponent,
     RegistroComponent,
-    HomeComponent
+    HomeComponent,
+    UsuariosComponent,
+    AltaAdminComponent,
+    EspecialistasComponent,
+    PacientesComponent,
+    MisTurnosComponent,
+    SolicitarTurnoComponent,
+    EspecialidadesComponent,
+    MiPerfilComponent,
+    MisHorariosComponent,
+    TurnosComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +47,8 @@ import { HomeComponent } from './components/home/home.component';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RecaptchaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

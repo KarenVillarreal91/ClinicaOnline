@@ -1,0 +1,42 @@
+<section class="py-5 text-center">
+    <h1 class="fw-light">Mi perfil</h1>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="info">
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" style="text-align: center; margin-bottom: 40px;" *ngIf="this.userService.EsPaciente()">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img [src]="this.userService.userLogueado.foto" width="100px" height="100px" style="border-radius: 50%;">
+                  </div>
+                  <div class="carousel-item">
+                    <img [src]="this.userService.userLogueado.foto2" width="100px" height="100px" style="border-radius: 50%;">
+                  </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 40px;" *ngIf="this.userService.EsEspecialista()">
+                <img [src]="this.userService.userLogueado.foto" width="100px" height="100px" style="border-radius: 50%;">
+            </div>
+            <p><b>Nombre: </b>{{this.userService.userLogueado.nombre}}</p><hr><br>
+            <p><b>Apellido: </b>{{this.userService.userLogueado.apellido}}</p><hr><br>
+            <p><b>Edad: </b>{{this.userService.userLogueado.edad}}</p><hr><br>
+            <p><b>DNI: </b>{{this.userService.userLogueado.dni}}</p><hr><br>
+            <div *ngIf="this.userService.userLogueado.obra"><p><b>Obra social: </b>{{this.userService.userLogueado.obra}}</p><hr><br></div>
+            <p><b>Correo electrónico: </b>{{this.userService.userLogueado.email}}</p><hr><br>
+            
+            
+            <div *ngIf="this.userService.userLogueado.especialidad">
+              <p><b>Modificar horarios</b></p>
+              <app-mis-horarios (horarioSeleccionadoEmitter)="SeleccionarHorario($event)"></app-mis-horarios>
+              <input type="text" [value]="horario.datos" readonly>
+              <button (click)="GuardarHorario()" [disabled]="horario.datos == ''">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

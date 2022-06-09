@@ -1,0 +1,25 @@
+<section class="py-5 text-center container">
+    <h1 class="fw-light">Pacientes</h1>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+            
+            <div class="col user" *ngFor="let user of this.userService.pacientes">
+                <div class="card shadow-sm">
+                    <div class="card-body">     
+                        <img [src]="user.foto" width="100px" height="100px" style="border-radius: 50%;">
+                        <img [src]="user.foto2" width="100px" height="100px" style="border-radius: 50%;">
+                        <h5>{{user.nombre}} {{user.apellido}}</h5>
+                        <p><b>Obra social: </b>{{user.obra}}</p>
+                        <p><b>Edad: </b>{{user.edad}}</p>
+                        <p><b>DNI: </b>{{user.dni}}</p>
+                        <p><b>Correo: </b>{{user.email}}</p>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>

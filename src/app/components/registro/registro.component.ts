@@ -17,7 +17,7 @@ export class RegistroComponent implements OnInit {
   fotos:FormData = new FormData();
   especialidades:Array<any> = [];
   spinner:boolean = false;
-
+  
   constructor(private fb:FormBuilder, private userService:UserService, private router:Router) 
   { 
     this.formEspecialista = this.fb.group({
@@ -25,22 +25,24 @@ export class RegistroComponent implements OnInit {
       'apellido':['', Validators.required],
       'edad':['',[Validators.required, Validators.min(18), Validators.max(99)]],
       'dni':['',[Validators.required, Validators.min(1000000), Validators.max(99999999)]],
-      'especialidad':[''],
+      'especialidad':['',[Validators.required]],
       'email':['', [Validators.required, Validators.email]],
       'clave':['', Validators.required],
-      'foto':['', Validators.required]
+      'foto':['', Validators.required],
+      'catpcha':['', Validators.required]
     });
 
     this.formPaciente = this.fb.group({
       'nombre':['', Validators.required],
       'apellido':['', Validators.required],
-      'edad':['',[Validators.required, Validators.min(18), Validators.max(99)]],
+      'edad':['',[Validators.required, Validators.min(0), Validators.max(99)]],
       'dni':['',[Validators.required, Validators.min(1000000), Validators.max(99999999)]],
       'obra':['', Validators.required],
       'email':['', [Validators.required, Validators.email]],
       'clave':['', Validators.required],
       'foto1':['', Validators.required],
-      'foto2':['', Validators.required]
+      'foto2':['', Validators.required],
+      'catpcha':['', Validators.required]
     });
 
     this.userService.GetColeccion('especialidades').subscribe((data)=>{
@@ -62,9 +64,9 @@ export class RegistroComponent implements OnInit {
     });
   }
 
-  Seleccionar(){
-    this.formEspecialista.value.especialidad = (<HTMLInputElement>document.getElementById("selectorEsp")).value;
-    (<HTMLInputElement>document.getElementById("selectorEsp")).value = "";
+  SeleccionarEsp(e:any)
+  {
+    this.formEspecialista.controls['especialidad'].setValue(e.nombre);
   }
 
   SubirFoto1(e:any)
@@ -77,6 +79,20 @@ export class RegistroComponent implements OnInit {
     this.fotos.append('foto2', e.target.files[0]);
   }
 
+  CatpchaPac(captchaResponse: string) {
+    if(captchaResponse)
+    {
+      this.formPaciente.controls['catpcha'].setValue(true);
+    }
+  }
+
+  CatpchaEsp(captchaResponse: string) {
+    if(captchaResponse)
+    {
+      this.formEspecialista.controls['catpcha'].setValue(true);
+    }
+  }
+
   async RegistroEspecialista()
   {
     let encontro = false;
@@ -84,51 +100,62 @@ export class RegistroComponent implements OnInit {
 
     this.userService.Registro(datos)
     .then((res:any)=>{
-
-      if(datos.especialidad != "")
-      {
-        for(let esp of this.especialidades)
-        {
-          if(esp.nombre == datos.especialidad)
-          {
-            encontro = true;
-            break;
-          }
-        }
-  
-        if(!encontro)
-        {
-          this.userService.SubirEspecialidad({nombre: datos.especialidad});
-        }
-        
-        let user = {nombre: datos.nombre, apellido: datos.apellido, dni: datos.dni, edad: datos.edad, 
-          especialidad: datos.especialidad, email: datos.email, habilitado: false};
-        
-          this.spinner = true;
-
-          setTimeout(() => {
-            this.spinner = false;  
-            this.userService.logueado = true;
-            this.userService.SubirEspecialista(user, this.fotos);
       
-            this.router.navigateByUrl('login');
-          }, 2000);
-      }
-      else
+      for(let esp of this.especialidades)
       {
-        Swal.fire({
-          title: 'Error',
-          text: 'Seleccione o ingrese una especialidad.',
-          icon: 'error',
-          timer: 2000,
-          toast: true,
-          backdrop: false,
-          position: 'bottom',
-          grow: 'row',
-          timerProgressBar: true,
-          showConfirmButton: false
-        });
+        if(esp.nombre == datos.especialidad)
+        {
+          encontro = true;
+          break;
+        }
       }
+
+      if(!encontro)
+      {
+        this.userService.SubirColeccion({nombre: datos.especialidad}, 'especialidades');
+      }
+      
+      let user = {nombre: datos.nombre, apellido: datos.apellido, dni: datos.dni, edad: datos.edad, 
+      especialidad: [datos.especialidad], horarios: ['Lunes 08:30', 'Martes 08:30', 'Miercoles 08:30', 'Jueves 08:30', 'Viernes 08:30', 'Sábado 08:30'],
+      email: datos.email, habilitado: false};
+      
+      this.spinner = true;
+
+      setTimeout(() => {
+        this.spinner = false;  
+        this.userService.SubirEspecialista(user, this.fotos);
+        
+        if(this.userService.logueado)
+        {
+          Swal.fire({
+            title: 'Se registró el especialista correctamente.',
+            icon: 'success',
+            timer: 4000,
+            toast: true,
+            backdrop: false,
+            position: 'bottom',
+            grow: 'row',
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
+
+          this.router.navigateByUrl('home');
+        }
+        else
+        {
+          this.userService.LogOut();
+
+          Swal.fire({
+            title: 'Registro exitoso',
+            text: 'Verifique su correo para la habilitación de su cuenta.',
+            icon: 'success',
+            confirmButtonText: 'Continuar'
+          });
+
+          this.router.navigateByUrl('login');
+        }
+      }, 2000);
+
     }).catch((error)=>{
       this.Errores(error);
     });
@@ -141,15 +168,43 @@ export class RegistroComponent implements OnInit {
     this.userService.Registro(datos)
     .then((res:any)=>{
         let user = {nombre: datos.nombre, apellido: datos.apellido, dni: datos.dni, edad: datos.edad, 
-        obra: datos.obra, email: datos.email, habilitado: false};
+        obra: datos.obra, email: datos.email, turnos: []};
         
         this.spinner = true;
 
           setTimeout(() => {
             this.spinner = false;  
-            this.userService.logueado = true;
             this.userService.SubirPaciente(user, this.fotos);
-            this.router.navigateByUrl('login');
+            
+            if(this.userService.logueado)
+            {
+              Swal.fire({
+                title: 'Se registró el paciente correctamente.',
+                icon: 'success',
+                timer: 4000,
+                toast: true,
+                backdrop: false,
+                position: 'bottom',
+                grow: 'row',
+                timerProgressBar: true,
+                showConfirmButton: false
+              });
+
+              this.router.navigateByUrl('home');
+            }
+            else
+            {
+              this.userService.LogOut();
+              
+              Swal.fire({
+                title: 'Registro exitoso',
+                text: 'Verifique su correo para la habilitación de su cuenta.',
+                icon: 'success',
+                confirmButtonText: 'Continuar'
+              });
+
+              this.router.navigateByUrl('login');
+            }
           }, 2000);
         
     }).catch((error)=>{

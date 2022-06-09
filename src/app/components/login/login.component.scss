@@ -24,7 +24,6 @@ body {
 h1 {
 	font-weight: bold;
 	margin: 0;
-    margin-bottom: 25px;
     margin-top: 20px;
 }
 
@@ -108,13 +107,15 @@ input {
 
 .rapido-container a {
 	border: 1px solid #DDDDDD;
-	border-radius: 50%;
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 	margin: 0 5px;
 	height: 40px;
-	width: 40px;
+	width: 60px;
+	&:hover{
+		background-color: darken($color: #DDDDDD, $amount: 10);
+	}
 }
 
 .container {
@@ -124,7 +125,7 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 768px;
+	width: 1040px;
 	max-width: 100%;
 	min-height: 480px;
     margin-top: 40px;

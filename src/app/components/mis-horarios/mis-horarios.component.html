@@ -1,0 +1,16 @@
+<div>
+    <label style="margin-top: 30px;">Día</label><br>
+    <div class="col esp" *ngFor="let dia of this.dias">
+        <div class="card card-body" (click)="SeleccionarDia(dia)" [id]="dia">
+            <h6 class="my-0">{{dia}}</h6>
+        </div>
+    </div>
+</div>
+<div *ngIf="this.seleccion.dia != ''">
+    <label style="margin-top: 30px;">Horario</label><br>
+    <div class="col esp" *ngFor="let hora of this.horas">
+        <div class="card card-body" (click)="SeleccionarHora(hora)" [id]="hora">
+            <h6 class="my-0">{{hora}}</h6>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<div style="text-align: center;">
+    <img class="rotate-center" src="../../../assets/logo.png" width="80px" style="margin-top: 20px;" *ngIf="spinner">
+    <img src="../../../assets/logo.png" width="80px" style="margin-top: 20px;" *ngIf="!spinner">
+  </div>
+  
+  <div class="container" id="container">
+      <div class="form-container">
+          <form [formGroup]="form" (ngSubmit)="Registro()">
+              <h2 style="margin-bottom: 40px">Registro administrador</h2>
+              <label>Nombre</label>
+              <small class="invalid" *ngIf="form.controls['nombre'].errors?.['required'] && form.controls['nombre'].touched">
+                  Nombre inválido.
+              </small>
+              <input type="text" formControlName="nombre"/>
+  
+              <label>Apellido</label>
+              <small class="invalid" *ngIf="form.controls['apellido'].errors?.['required'] && form.controls['apellido'].touched">
+                  Apellido inválido.
+              </small>
+              <input type="text" formControlName="apellido"/>
+  
+              <label>Edad</label>
+              <small class="invalid" *ngIf="form.controls['edad'].errors?.['required'] && form.controls['edad'].touched
+               || (form.controls['edad'].errors?.['min'] || form.controls['edad'].errors?.['max'])">
+                Edad inválida.
+               </small>
+              <input type="number" formControlName="edad"/>
+  
+              <label>DNI</label>
+              <small class="invalid" *ngIf="form.controls['dni'].errors?.['required'] && form.controls['dni'].touched
+               || (form.controls['dni'].errors?.['min'] || form.controls['dni'].errors?.['max'])">
+                DNI inválido.
+               </small>
+              <input type="number" formControlName="dni"/>
+
+              <label>Correo electrónico</label>
+                <small class="invalid" *ngIf="form.controls['email'].errors?.['required'] && form.controls['email'].touched
+                  || form.controls['email'].errors?.['email']">
+                  Email inválido.
+                </small>
+              <input type="email" formControlName="email"/>
+          
+              <label>Contraseña</label>
+                <small class="invalid" *ngIf="form.controls['clave'].errors?.['required'] && form.controls['clave'].touched">
+                  Contraseña inválida.
+                </small>
+              <input type="password" formControlName="clave"/>
+              
+              <label>Imágen de perfil</label>
+                <small class="invalid" *ngIf="form.controls['foto'].errors?.['required'] && form.controls['foto'].touched">
+                  Seleccione una imágen.
+                </small>
+              <input type="file" accept="image/*" (change)="SubirFoto($event)" formControlName="foto"/>
+                
+              <button style="margin-top: 40px" [disabled]="form.invalid">Continuar</button>
+          </form>
+      </div>
+  </div>

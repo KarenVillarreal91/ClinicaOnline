@@ -1,3 +1,108 @@
 <div style="text-align: center;">
     <h1 class="text-dark">Bienvenido</h1>
 </div>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" *ngIf="this.userService.EsAdmin()">
+            <div class="col user">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <img src="../../../assets/gears.png" width="50px">
+                        <h5>Administración de usuarios</h5><hr>
+                        <p>Información de todos los especialistas registrados.
+                            <br>Administra el acceso a sus cuentas.
+                        </p>
+                        <button type="button" class="btn btn-light" routerLink="../usuarios">Administrar</button>
+                    </div>
+                </div>
+            </div> 
+            <div class="col user">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <img src="../../../assets/admn.png" style="margin-top: 9px;" width="35px">
+                        <h5>Registro de Administradores</h5><hr>
+                        <p>Registra nuevos administradores de la clínica.</p><br>
+                        <button type="button" class="btn btn-light" routerLink="../registroAdmin">Registrar</button>
+                    </div>
+                </div>
+            </div> 
+            <div class="col user">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <img src="../../../assets/esppac.png" width="50px">
+                        <h5>Registro de Especialistas o Pacientes</h5><hr>
+                        <p>Registra nuevos especialistas o pacientes según corresponda.</p>
+                        <button type="button" class="btn btn-light" routerLink="../registro">Registrar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col user">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-clipboard2-pulse-fill" viewBox="0 0 16 16">
+                            <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/>
+                            <path d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585c.055.156.085.325.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5c0-.175.03-.344.085-.5ZM9.98 5.356 11.372 10h.128a.5.5 0 0 1 0 1H11a.5.5 0 0 1-.479-.356l-.94-3.135-1.092 5.096a.5.5 0 0 1-.968.039L6.383 8.85l-.936 1.873A.5.5 0 0 1 5 11h-.5a.5.5 0 0 1 0-1h.191l1.362-2.724a.5.5 0 0 1 .926.08l.94 3.135 1.092-5.096a.5.5 0 0 1 .968-.039Z"/>
+                        </svg>
+                        <h5>Solicitar un turno</h5><hr>
+                        <p>Solicita un turno para un paciente.</p><br>
+                        <button type="button" class="btn btn-light" routerLink="../solicitarTurno">Solicitar</button>
+                    </div>
+                </div>
+            </div> 
+            <div class="col user">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-file-earmark-medical-fill" viewBox="0 0 16 16">
+                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm-3 2v.634l.549-.317a.5.5 0 1 1 .5.866L7 7l.549.317a.5.5 0 1 1-.5.866L6.5 7.866V8.5a.5.5 0 0 1-1 0v-.634l-.549.317a.5.5 0 1 1-.5-.866L5 7l-.549-.317a.5.5 0 0 1 .5-.866l.549.317V5.5a.5.5 0 1 1 1 0zm-2 4.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zm0 2h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z"/>
+                          </svg>
+                        <h5>Turnos</h5><hr>
+                        <p>Lista de turnos de la clínica.</p><br>
+                        <button type="button" class="btn btn-light" routerLink="../misTurnos">Ver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" *ngIf="this.userService.EsPaciente()">
+            <div class="col user">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-clipboard2-pulse-fill" viewBox="0 0 16 16">
+                            <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/>
+                            <path d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585c.055.156.085.325.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5c0-.175.03-.344.085-.5ZM9.98 5.356 11.372 10h.128a.5.5 0 0 1 0 1H11a.5.5 0 0 1-.479-.356l-.94-3.135-1.092 5.096a.5.5 0 0 1-.968.039L6.383 8.85l-.936 1.873A.5.5 0 0 1 5 11h-.5a.5.5 0 0 1 0-1h.191l1.362-2.724a.5.5 0 0 1 .926.08l.94 3.135 1.092-5.096a.5.5 0 0 1 .968-.039Z"/>
+                        </svg>
+                        <h5>Solicitar un turno</h5><hr>
+                        <p>Solicita un turno para ser atendido en la clínica.</p><br>
+                        <button type="button" class="btn btn-light" routerLink="../solicitarTurno">Solicitar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col user">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-file-earmark-medical-fill" viewBox="0 0 16 16">
+                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm-3 2v.634l.549-.317a.5.5 0 1 1 .5.866L7 7l.549.317a.5.5 0 1 1-.5.866L6.5 7.866V8.5a.5.5 0 0 1-1 0v-.634l-.549.317a.5.5 0 1 1-.5-.866L5 7l-.549-.317a.5.5 0 0 1 .5-.866l.549.317V5.5a.5.5 0 1 1 1 0zm-2 4.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zm0 2h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z"/>
+                          </svg>
+                        <h5>Mis turnos</h5><hr>
+                        <p>Lista de turnos que solicitaste.</p><br>
+                        <button type="button" class="btn btn-light" routerLink="../misTurnos">Ver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" *ngIf="this.userService.EsEspecialista()">
+            <div class="col user">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-file-earmark-medical-fill" viewBox="0 0 16 16">
+                            <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm-3 2v.634l.549-.317a.5.5 0 1 1 .5.866L7 7l.549.317a.5.5 0 1 1-.5.866L6.5 7.866V8.5a.5.5 0 0 1-1 0v-.634l-.549.317a.5.5 0 1 1-.5-.866L5 7l-.549-.317a.5.5 0 0 1 .5-.866l.549.317V5.5a.5.5 0 1 1 1 0zm-2 4.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zm0 2h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z"/>
+                          </svg>
+                        <h5>Mis turnos</h5><hr>
+                        <p>Lista de turnos que tenes a tu cargo.</p><br>
+                        <button type="button" class="btn btn-light" routerLink="../misTurnos">Ver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

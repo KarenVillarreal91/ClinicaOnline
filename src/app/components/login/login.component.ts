@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router, private fb:FormBuilder) {
     this.userService.logueado = false;
-    console.log(this.userService.logueado);
 
     this.form = this.fb.group({
       'email':['', [Validators.required, Validators.email]],
@@ -31,23 +30,10 @@ export class LoginComponent implements OnInit {
     this.userService.Login({email: this.form.value.email, clave: this.form.value.clave})
     .then((res:any)=>{
 
-        // if(!this.userService.userLogueado?.emailVerified)
-        // {
-        //   Swal.fire({
-        //     title: 'Error',
-        //     text: 'Verifique su correo para la habilitación de su cuenta.',
-        //     icon: 'error',
-        //     timer: 5000,
-        //     toast: true,
-        //     backdrop: false,
-        //     position: 'bottom',
-        //     grow: 'row',
-        //     timerProgressBar: true,
-        //     showConfirmButton: false
-        //   });
-        // }
-        // else
-        // {
+      if(!res.user.emailVerified)
+      {
+        if(this.userService.EsAdmin())
+        {
           this.spinner = true;
 
           setTimeout(() => {
@@ -55,7 +41,59 @@ export class LoginComponent implements OnInit {
             this.userService.logueado = true;
             this.router.navigateByUrl('home');
           }, 2000);
-        // }
+        }
+        else
+        {
+          this.userService.LogOut();
+
+          Swal.fire({
+            title: 'Error',
+            text: 'Verifique su correo para la habilitación de su cuenta.',
+            icon: 'error',
+            timer: 4000,
+            toast: true,
+            backdrop: false,
+            position: 'bottom',
+            grow: 'row',
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
+        }
+      }
+      else
+      {      
+        let user:any = this.userService.EsEspecialista();
+
+        if(user.habilitado || !user)
+        {
+          this.spinner = true;
+
+          setTimeout(() => {
+            this.spinner = false;  
+            this.userService.logueado = true;
+            this.router.navigateByUrl('home');
+          }, 2000);
+        }
+        else
+        {
+          this.userService.LogOut();
+  
+          Swal.fire({
+            title: 'Error',
+            text: 'Espere a que un administrador apruebe tu cuenta.',
+            icon: 'error',
+            timer: 4000,
+            toast: true,
+            backdrop: false,
+            position: 'bottom',
+            grow: 'row',
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
+        } 
+      }
+
+      this.userService.GetUsuarioActual();
 
     }).catch((error)=>{
       if(error.code == 'auth/wrong-password' || error.code == 'auth/user-not-found')
@@ -133,7 +171,7 @@ export class LoginComponent implements OnInit {
           showConfirmButton: false
         });
       }
-      console.log(error.code);
+      console.log(error);
     });
   }
 

@@ -1,0 +1,10 @@
+<section class="py-5 text-center container">
+    <h1 class="fw-light" *ngIf="!this.userService.EsAdmin()">Mis turnos</h1>
+    <h1 class="fw-light" *ngIf="this.userService.EsAdmin()">Turnos</h1>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <app-turnos [inputTurnos]="this.turnos"></app-turnos>
+    </div>
+</div>

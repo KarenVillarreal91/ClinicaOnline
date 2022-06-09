@@ -1,0 +1,44 @@
+.turno{
+    margin-top: 5px;
+    margin:auto;
+}
+
+.card-body{
+    padding: 10px;
+    &:hover{
+		background-color: darken($color: #ffffff, $amount: 10);
+        cursor:pointer;
+	}
+    &:active{
+	    transform: scale(0.95);
+    }
+}
+
+h6{
+    display: inline-flex;
+    margin-right: 20px;
+}
+
+thead, tr{
+    border-color: rgba(255, 255, 255, 0);
+}
+
+button{
+    margin-right: 10px;
+}
+
+.Cancelado{
+    color: #c53f3f;
+}
+
+.Finalizado{
+    color: #3597d8;
+}
+
+.Aceptado{
+    color: #1d9e3e;
+}
+
+.Rechazado{
+    color: #c53f3f;
+}

@@ -4,3 +4,22 @@ h1{
 	font-family: 'Montserrat', sans-serif;
     margin-top: 20px;
 }
+
+h5{
+    margin-top: 20px;
+}
+
+.user{
+    text-align: center; 
+    margin: auto;
+    margin-top: 15px;
+}
+
+button{
+    background: #05afaf;
+    color: white;
+    &:hover{
+        background: darken($color: #05afaf, $amount: 5);
+        color: white;
+    }
+}

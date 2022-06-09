@@ -8,6 +8,28 @@
 		<form [formGroup]="form" (ngSubmit)="Login()">
 			<h1>Log in</h1>
 
+      <span>Ingreso rápido</span>
+      <div class="rapido-container">
+				<a (click)='InicioAutomatico("pagibic533@musezoo.com","123asd")' class="rapido">
+          <img src="https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Fuser.png?alt=media&token=d48b49b2-49ea-4820-9181-6b7c5a8bce26" width="27px">   
+        </a>
+        <a (click)='InicioAutomatico("nko71859@zcrcd.com","123asd")' class="rapido">
+          <img src="https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Fuser.png?alt=media&token=d48b49b2-49ea-4820-9181-6b7c5a8bce26" width="27px">   
+        </a>
+        <a (click)='InicioAutomatico("zod66565@jiooq.com","123asd")' class="rapido">
+          <img src="https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Fuser.png?alt=media&token=d48b49b2-49ea-4820-9181-6b7c5a8bce26" width="27px">   
+        </a>
+				<a (click)='InicioAutomatico("ugq84795@jeoce.com","123asd")' class="rapido">
+          <img src="https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Fesp.png?alt=media&token=ac3f21d9-ee69-4804-bf3b-305f09505564" width="27px">   
+        </a>
+        <a (click)='InicioAutomatico("vhu08132@zcrcd.com","123asd")' class="rapido">
+          <img src="https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Fesp.png?alt=media&token=ac3f21d9-ee69-4804-bf3b-305f09505564" width="27px">   
+        </a>
+        <a (click)='InicioAutomatico("admin@admin.com","123asd")' class="rapido">
+          <img src="https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Fadm.png?alt=media&token=03812e50-e079-4087-be5e-8e94b0233692" width="24px">   
+        </a>
+			</div>
+      
 			<label>Correo electrónico</label>
       <small class="invalid" *ngIf="form.controls['email'].errors?.['required'] && form.controls['email'].touched
         || form.controls['email'].errors?.['email']">
@@ -22,20 +44,6 @@
       <input type="password" id="clave" formControlName="clave">
 
 			<button type="submit" class="ingreso">Ingresar</button>
-
-      <span>Ingreso rápido</span>
-      <div class="rapido-container">
-				<a (click)='InicioAutomatico("paciente@paciente.com","123asd")' class="rapido">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          </svg>
-        </a>
-				<a (click)='InicioAutomatico("especialista@especialista.com","123asd")' class="rapido">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart-pulse-fill" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1.475 9C2.702 10.84 4.779 12.871 8 15c3.221-2.129 5.298-4.16 6.525-6H12a.5.5 0 0 1-.464-.314l-1.457-3.642-1.598 5.593a.5.5 0 0 1-.945.049L5.889 6.568l-1.473 2.21A.5.5 0 0 1 4 9H1.475ZM.879 8C-2.426 1.68 4.41-2 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C11.59-2 18.426 1.68 15.12 8h-2.783l-1.874-4.686a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.88Z"/>
-          </svg>
-        </a>
-			</div>
 		</form>
 	</div>
 	<div class="overlay-container">

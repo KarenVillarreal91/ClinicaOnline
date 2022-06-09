@@ -1,0 +1,83 @@
+<section class="py-5 text-center">
+    <h1 class="fw-light">Solicitar un turno</h1>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="form-container container">
+        <form [formGroup]="form" (ngSubmit)="Solicitar()">
+            <label class="invalid" *ngIf="form.controls['especialidad'].errors?.['required'] && form.controls['especialidad'].touched">
+                Seleccione una especialidad *
+            </label>
+            <label *ngIf="!(form.controls['especialidad'].errors?.['required'] && form.controls['especialidad'].touched)">
+                Seleccione una especialidad
+            </label>
+            <div class="input-group mb-3" (click)="FiltrarEspecialista()">
+              <app-especialidades (especialidadSeleccionadaEmitter)="SeleccionarEspecialidad($event)"></app-especialidades>
+            </div>
+            <input type="text" class="form-control w-50" [value]="this.form.value.especialidad" formControlName="especialidad" readonly>
+            
+            <div *ngIf="this.form.value.especialidad">
+                <label class="invalid" *ngIf="form.controls['especialista'].errors?.['required'] && form.controls['especialista'].touched">
+                    Seleccione un especialista *
+                </label>
+                <label *ngIf="!(form.controls['especialista'].errors?.['required'] && form.controls['especialista'].touched)">
+                    Seleccione un especialista
+                </label>
+                <div class="col esp mb-3" *ngFor="let esp of this.especialistas">
+                    <div class="card card-body" (click)="SeleccionarEspecialista(esp)">
+                        <h6 class="my-0">{{esp.nombre}} {{esp.apellido}}</h6>
+                    </div>
+                </div>
+                <input type="text" class="form-control w-50" [value]="this.especialistaNombre" formControlName="especialista" readonly>    
+            </div>
+
+            <div *ngIf="this.form.value.especialista">
+                <label class="invalid" *ngIf="form.controls['dia'].errors?.['required'] && form.controls['dia'].touched">
+                    Seleccione un día *
+                </label>
+                <label *ngIf="!(form.controls['dia'].errors?.['required'] && form.controls['dia'].touched)">
+                    Seleccione un día
+                </label>
+                <div class="col esp mb-3" *ngFor="let dia of this.dias">
+                    <div class="card card-body" (click)="SeleccionarDia(dia)">
+                        <h6 class="my-0">{{dia.toLocaleDateString()}}</h6>
+                    </div>
+                </div>
+                <input type="text" class="form-control w-50" [value]="this.dia" formControlName="dia" readonly>    
+            </div>
+
+            <div *ngIf="this.form.value.dia">
+                <label class="invalid" *ngIf="form.controls['horario'].errors?.['required'] && form.controls['horario'].touched">
+                    Seleccione una hora *
+                </label>
+                <label *ngIf="!(form.controls['horario'].errors?.['required'] && form.controls['horario'].touched)">
+                    Seleccione una hora
+                </label>
+                <div class="col esp mb-3" *ngFor="let horario of this.horarios">
+                    <div class="card card-body" (click)="SeleccionarHorario(horario)">
+                        <h6 class="my-0">{{horario}}</h6>
+                    </div>
+                </div>
+                <input type="text" class="form-control w-50" [value]="this.form.value.horario" formControlName="horario" readonly>    
+            </div>
+
+            <div *ngIf="this.userService.EsAdmin()">
+                <label class="invalid" *ngIf="form.controls['paciente'].errors?.['required'] && form.controls['paciente'].touched">
+                    Seleccione un paciente *
+                </label>
+                <label *ngIf="!(form.controls['paciente'].errors?.['required'] && form.controls['paciente'].touched)">
+                    Seleccione un paciente
+                </label>
+                <div class="col esp mb-3" *ngFor="let paciente of this.userService.pacientes">
+                    <div class="card card-body" (click)="SeleccionarPaciente(paciente)">
+                        <h6 class="my-0">{{paciente.nombre}} {{paciente.apellido}}</h6>
+                        <p class="my-0"><b>DNI: </b>{{paciente.dni}}</p>
+                    </div>
+                </div>
+                <input type="text" class="form-control w-50" [value]="this.form.value.paciente" formControlName="paciente" readonly>    
+            </div>
+
+            <button [disabled]="form.invalid">Continuar</button>
+        </form>
+    </div>
+</div>
