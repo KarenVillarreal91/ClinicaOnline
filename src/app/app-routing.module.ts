@@ -17,10 +17,10 @@ const routes: Routes = [
   {path:"home", component:HomeComponent, canActivate:[GuardGuard]},
   {path:"usuarios", component:UsuariosComponent, canActivate:[GuardGuard]},
   {path:"registroAdmin", component:AltaAdminComponent, canActivate:[GuardGuard]},
-  {path:"misTurnos", component:MisTurnosComponent},
-  {path:"turnos", component:TurnosComponent},
+  {path:"misTurnos", component:MisTurnosComponent, canActivate:[GuardGuard]},
+  {path:"turnos", component:TurnosComponent, canActivate:[GuardGuard]},
   {path:"solicitarTurno", component:SolicitarTurnoComponent, canActivate:[GuardGuard]},
-  {path:"miPerfil", component:MiPerfilComponent},
+  {path:"miPerfil", component:MiPerfilComponent, canActivate:[GuardGuard]},
   {path:"", redirectTo:"/login",pathMatch:"full"},
   {path:"**", redirectTo:"/login"}
 ];
