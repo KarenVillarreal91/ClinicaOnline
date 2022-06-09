@@ -73,3 +73,11 @@ En caso de ingresar como administrador, en la página de bienvenida se listan ci
 <p  align="center">
 <img src='https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Fadmin.png?alt=media&token=93f7405e-231f-4265-9578-4854aab56121'>
 </p>
+
+### Administración de usuarios
+El administrador puede ver la lista de todos los usuarios registrados. Pudiendo habilitar o deshabilitar el acceso a la página a los especialistas.
+
+<p  align="center">
+<img src='https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Fadmusuarios.png?alt=media&token=bc96b2a4-f406-4899-a064-b85af1ec7967'>
+<img src="https://i.gyazo.com/df66373a092daf56610e5dd6f3b74ef3.gif" alt="Image from Gyazo" width="1214"/>
+</p>
