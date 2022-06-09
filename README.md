@@ -24,16 +24,45 @@ En esta sección, el paciente puede solicitar un turno seleccionando lo necesari
 </p>
 
 ### Mis turnos
-En esta sección, el paciente puede cancelar un turno solicitado, ver reseñas, realizar encuentas y calificar atención.
+En esta sección, el paciente puede cancelar un turno solicitado, ver reseñas, realizar encuestas y calificar atención.
 <p  align="center">
 <img src='https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Fmisturnos.png?alt=media&token=1407abfd-f307-42e6-ad21-cf247639faf5'>
 </p>
 
 
 ### Perfil
-Al hacer click en su foto o nombre, el paciente puede ver todos sus datos personales en su perfil.
+Al hacer click en su foto o nombre (arriba a la derecha), el paciente puede ver todos sus datos personales en su perfil.
 
 <p  align="center">
 <img src='https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Fperfilpac.png?alt=media&token=ce52d7f0-a96e-438a-93bc-15913cc40fe4'>
 <img src="https://i.gyazo.com/52eacc8cc379d9a10fb25a71ea2bf110.gif" alt="Image from Gyazo" width="248"/>
+</p>
+
+## Especialista
+En caso de ingresar como especialista, en la página de bienvenida se da como acción "Mis turnos".
+
+<p  align="center">
+<img src="https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Fespec.png?alt=media&token=b23d0d4a-ad43-4f90-a586-a505c1593be0"/>
+</p>
+
+### Mis turnos
+En esta sección, el especialista puede cancelar, rechazar, aceptar o finalizar un turno y ver reseñas.
+
+<p  align="center">
+<img src='https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2FmisturnosEspec.png?alt=media&token=e5dc0372-d855-4841-a017-c5d1e5b0af44'>
+</p>
+
+### Perfil
+Al hacer click en su foto o nombre (arriba a la derecha), el especialista puede ver todos sus datos personales en su perfil con la opción de cambiar y agregar horarios de los turnos.
+
+<p  align="center">
+<img src='https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2FperfilEspec.png?alt=media&token=34a0f457-c190-422b-bec8-85bfd420f58a'>
+<img src="https://i.gyazo.com/8158482a0c8402950d7fc4c8c1e24584.gif" alt="Image from Gyazo" width="622"/>
+</p>
+
+## Administrador
+En caso de ingresar como administrador, en la página de bienvenida se listan cinco posibles acciones, administrar usuarios, registrar administradores, registrar pacientes/especialistas, solicitar un turno y mis turnos.
+
+<p  align="center">
+<img src='https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Fadmin.png?alt=media&token=93f7405e-231f-4265-9578-4854aab56121'>
 </p>
