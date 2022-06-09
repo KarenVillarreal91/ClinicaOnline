@@ -9,6 +9,13 @@ En la parte izquierda se encuentran los accesos rápidos y el inicio de sesión 
 
 ![](https://firebasestorage.googleapis.com/v0/b/clinicaonline-kv.appspot.com/o/fotos%2Flogin.png?alt=media&token=5c6ffe8b-ed57-4c17-80ff-0700bce7efd3)
 
+## Registro
+En esta sección el usuario puede crearse una cuenta de paciente o especialista según corresponda.
+
+<p  align="center">
+<img src="https://i.gyazo.com/91a80c02bd079c4aeda14ea76e8f02e5.gif" alt="Image from Gyazo" width="720"/>
+</p>
+
 ## Paciente
 En caso de ingresar como paciente, en la página de bienvenida se listan dos posibles acciones, solicitar un turno y mis turnos.
 
