@@ -6,9 +6,8 @@
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-            
-            <div class="col user" *ngFor="let user of this.userService.pacientes">
-                <div class="card shadow-sm">
+            <div class="col user" *ngFor="let user of this.pacientes">
+                <div class="card shadow-sm" (click)="SeleccionarPaciente(user)">
                     <div class="card-body">     
                         <img [src]="user.foto" width="100px" height="100px" style="border-radius: 50%;">
                         <img [src]="user.foto2" width="100px" height="100px" style="border-radius: 50%;">

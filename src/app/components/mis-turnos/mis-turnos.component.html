@@ -5,6 +5,11 @@
 
 <div class="album py-5 bg-light">
     <div class="container">
+        <div>
+            <input type="text" [(ngModel)]="filtro">
+            <button type="button" class="btn btn-outline-success" (click)="Filtro()" style="margin-right: 20px;">Filtrar</button>
+            <button type="button" class="btn btn-outline-danger" (click)="Turnos()">Borrar filtro</button>
+        </div>
         <app-turnos [inputTurnos]="this.turnos"></app-turnos>
     </div>
 </div>

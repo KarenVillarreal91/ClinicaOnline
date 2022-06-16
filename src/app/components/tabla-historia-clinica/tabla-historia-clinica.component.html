@@ -1,0 +1,30 @@
+<div *ngIf="this.inputPaciente">
+    <section class="py-5 text-center">
+        <h1 class="fw-light" *ngIf="this.userService.userLogueado.historiaClinica">Mi historial clínico</h1>
+        <h1 class="fw-light" *ngIf="!this.userService.userLogueado.historiaClinica">Historia clínica de {{inputPaciente.nombre}} {{inputPaciente.apellido}}</h1>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                
+                <div class="col user" *ngFor="let historia of this.inputPaciente.historiaClinica">
+                    <div class="card shadow-sm">
+                        <div class="card-body">     
+                            <h5>Datos</h5><br>
+                            <p><b>Especialista: </b>{{historia.especialista}}</p>
+                            <p><b>Altura: </b>{{historia.altura}}m</p>
+                            <p><b>Peso: </b>{{historia.peso}}kg</p>
+                            <p><b>Temperatura: </b>{{historia.temperatura}}°</p>
+                            <p><b>Presión: </b>{{historia.presion}}</p>
+                            <div *ngFor="let dato of historia.datos">
+                                <p><b>{{dato.clave}}: </b>{{dato.valor}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+

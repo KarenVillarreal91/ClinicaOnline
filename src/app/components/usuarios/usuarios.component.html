@@ -1,2 +1,6 @@
-<app-especialistas></app-especialistas>
-<app-pacientes></app-pacientes>
+<div style="text-align: center;" *ngIf="this.userService.EsAdmin()">
+    <button type="button" (click)="Excel()">Descargar Excel</button>
+</div>
+<app-especialistas *ngIf="this.userService.EsAdmin()"></app-especialistas>
+<app-pacientes [pacientes]="pacientes" (pacienteSeleccionadoEmitter)="SeleccionarPaciente($event)"></app-pacientes>
+<app-tabla-historia-clinica [inputPaciente]="historia"></app-tabla-historia-clinica>

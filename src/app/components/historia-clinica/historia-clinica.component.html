@@ -1,0 +1,117 @@
+<section class="py-5 text-center">
+    <h1 class="fw-light">Historia clínica</h1>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="form-container container">
+        <form [formGroup]="form" (ngSubmit)="Enviar()">
+            <div>
+                <label class="invalid" *ngIf="form.controls['paciente'].errors?.['required'] && form.controls['paciente'].touched">
+                    Seleccione un paciente *
+                </label>
+                <label *ngIf="!(form.controls['paciente'].errors?.['required'] && form.controls['paciente'].touched)">
+                    Seleccione un paciente
+                </label>
+                <div class="col esp mb-3" *ngFor="let paciente of this.userService.pacientes">
+                    <div class="card card-body" (click)="SeleccionarPaciente(paciente)">
+                        <h6 class="my-0">{{paciente.nombre}} {{paciente.apellido}}</h6>
+                        <p class="my-0"><b>DNI: </b>{{paciente.dni}}</p>
+                    </div>
+                </div>
+                <input type="text" class="form-control w-50" [value]="this.form.value.paciente" formControlName="paciente" readonly>    
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="invalid" *ngIf="form.controls['altura'].errors?.['required'] && form.controls['altura'].touched">
+                        Altura *
+                    </label>
+                    <label *ngIf="!(form.controls['altura'].errors?.['required'] && form.controls['altura'].touched)">
+                        Altura
+                    </label>
+                    <input type="text" class="form-control" formControlName="altura">    
+                </div>
+
+                <div class="col">
+                    <label class="invalid" *ngIf="form.controls['peso'].errors?.['required'] && form.controls['peso'].touched">
+                        Peso *
+                    </label>
+                    <label *ngIf="!(form.controls['peso'].errors?.['required'] && form.controls['peso'].touched)">
+                        Peso
+                    </label>
+                    <input type="text" class="form-control" formControlName="peso">    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="invalid" *ngIf="form.controls['temperatura'].errors?.['required'] && form.controls['temperatura'].touched">
+                    Temperatura *
+                    </label>
+                    <label *ngIf="!(form.controls['temperatura'].errors?.['required'] && form.controls['temperatura'].touched)">
+                        Temperatura
+                    </label>
+                    <input type="text" class="form-control" formControlName="temperatura">    
+                </div>
+
+                <div class="col">
+                    <label class="invalid" *ngIf="form.controls['presion'].errors?.['required'] && form.controls['presion'].touched">
+                        Presión *
+                    </label>
+                    <label *ngIf="!(form.controls['presion'].errors?.['required'] && form.controls['presion'].touched)">
+                        Presión
+                    </label>
+                    <input type="text" class="form-control" formControlName="presion">    
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="col col-lg-1" (click)="AgregarDato()">
+                    <div class="card card-body" style="width: 40px; height: 40px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="col">
+                    <label style="margin-top: 8px;">Agregue otros datos ({{this.datosCant}}/3)</label>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="this.datosCant > 0">
+                <div class="col col-lg-3">
+                    <label>Clave</label>
+                    <input type="text" class="form-control" id="clave-1">   
+                </div>
+                <div class="col col-lg-6">
+                    <label>Valor</label>
+                    <input type="text" class="form-control" id="valor-1">
+                </div>
+            </div>
+    
+            <div class="row" *ngIf="this.datosCant > 1">
+                <div class="col col-lg-3">
+                    <label>Clave</label>
+                    <input type="text" class="form-control" id="clave-2">   
+                </div>
+                <div class="col col-lg-6">
+                    <label>Valor</label>
+                    <input type="text" class="form-control" id="valor-2">
+                </div>
+            </div>
+
+            <div class="row" *ngIf="this.datosCant > 2">
+                <div class="col col-lg-3">
+                    <label>Clave</label>
+                    <input type="text" class="form-control" id="clave-3">   
+                </div>
+                <div class="col col-lg-6">
+                    <label>Valor</label>
+                    <input type="text" class="form-control" id="valor-3">
+                </div>
+            </div>
+
+            <button [disabled]="form.invalid">Enviar</button>
+        </form>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,9 +8,18 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class PacientesComponent implements OnInit {
 
-  constructor(public userService:UserService) { }
+  @Output() pacienteSeleccionadoEmitter:EventEmitter<any> = new EventEmitter();
 
-  ngOnInit(): void {
+  @Input() pacientes:any;
+
+  constructor(public userService:UserService) 
+  { 
   }
 
+  ngOnInit(): void {}
+
+  SeleccionarPaciente(seleccion:any)
+  {
+    this.pacienteSeleccionadoEmitter.emit(seleccion);
+  }
 }

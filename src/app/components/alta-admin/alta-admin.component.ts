@@ -52,6 +52,7 @@ export class AltaAdminComponent implements OnInit {
         this.spinner = false;  
         this.userService.logueado = true;
         this.userService.SubirAdmin(user, this.foto);
+        this.router.navigateByUrl('home');
       }, 2000);
       
       Swal.fire({

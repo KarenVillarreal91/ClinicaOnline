@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,13 +9,11 @@ import { UserService } from 'src/app/services/user.service';
 export class EspecialidadesComponent implements OnInit {
 
   @Output() especialidadSeleccionadaEmitter:EventEmitter<any> = new EventEmitter();
-  especialidades:any;
 
-  constructor(private userService:UserService) 
+  @Input() especialidades:any;
+
+  constructor(public userService:UserService) 
   { 
-    userService.GetColeccion('especialidades').subscribe((data)=>{
-      this.especialidades = data;
-    });
   }
 
   ngOnInit(): void {}

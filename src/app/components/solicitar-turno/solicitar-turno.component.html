@@ -5,26 +5,17 @@
 <div class="album py-5 bg-light">
     <div class="form-container container">
         <form [formGroup]="form" (ngSubmit)="Solicitar()">
-            <label class="invalid" *ngIf="form.controls['especialidad'].errors?.['required'] && form.controls['especialidad'].touched">
-                Seleccione una especialidad *
-            </label>
-            <label *ngIf="!(form.controls['especialidad'].errors?.['required'] && form.controls['especialidad'].touched)">
-                Seleccione una especialidad
-            </label>
-            <div class="input-group mb-3" (click)="FiltrarEspecialista()">
-              <app-especialidades (especialidadSeleccionadaEmitter)="SeleccionarEspecialidad($event)"></app-especialidades>
-            </div>
-            <input type="text" class="form-control w-50" [value]="this.form.value.especialidad" formControlName="especialidad" readonly>
-            
-            <div *ngIf="this.form.value.especialidad">
+
+            <div>
                 <label class="invalid" *ngIf="form.controls['especialista'].errors?.['required'] && form.controls['especialista'].touched">
                     Seleccione un especialista *
                 </label>
                 <label *ngIf="!(form.controls['especialista'].errors?.['required'] && form.controls['especialista'].touched)">
                     Seleccione un especialista
                 </label>
-                <div class="col esp mb-3" *ngFor="let esp of this.especialistas">
+                <div class="col esp mb-3" *ngFor="let esp of this.userService.especialistas">
                     <div class="card card-body" (click)="SeleccionarEspecialista(esp)">
+                        <img width="70px" height="70px" style="border-radius: 50%; margin:auto;" [src]="esp.foto">
                         <h6 class="my-0">{{esp.nombre}} {{esp.apellido}}</h6>
                     </div>
                 </div>
@@ -32,33 +23,31 @@
             </div>
 
             <div *ngIf="this.form.value.especialista">
-                <label class="invalid" *ngIf="form.controls['dia'].errors?.['required'] && form.controls['dia'].touched">
+                <label class="invalid" *ngIf="form.controls['especialidad'].errors?.['required'] && form.controls['especialidad'].touched">
+                    Seleccione una especialidad *
+                </label>
+                <label *ngIf="!(form.controls['especialidad'].errors?.['required'] && form.controls['especialidad'].touched)">
+                    Seleccione una especialidad
+                </label>
+                <div class="input-group mb-3">
+                    <app-especialidades [especialidades]="this.especialidadesMostrar" (especialidadSeleccionadaEmitter)="SeleccionarEspecialidad($event)"></app-especialidades>
+                </div>
+                <input type="text" class="form-control w-50" [value]="this.form.value.especialidad" formControlName="especialidad" readonly>
+            </div>
+            
+            <div *ngIf="this.form.value.especialidad">
+                <label class="invalid" *ngIf="form.controls['fecha'].errors?.['required'] && form.controls['fecha'].touched">
                     Seleccione un día *
                 </label>
-                <label *ngIf="!(form.controls['dia'].errors?.['required'] && form.controls['dia'].touched)">
+                <label *ngIf="!(form.controls['fecha'].errors?.['required'] && form.controls['fecha'].touched)">
                     Seleccione un día
                 </label>
                 <div class="col esp mb-3" *ngFor="let dia of this.dias">
-                    <div class="card card-body" (click)="SeleccionarDia(dia)">
-                        <h6 class="my-0">{{dia.toLocaleDateString()}}</h6>
+                    <div class="card card-body" (click)="SeleccionarFecha(dia)">
+                        <h6 class="my-0">{{dia}}</h6>
                     </div>
                 </div>
-                <input type="text" class="form-control w-50" [value]="this.dia" formControlName="dia" readonly>    
-            </div>
-
-            <div *ngIf="this.form.value.dia">
-                <label class="invalid" *ngIf="form.controls['horario'].errors?.['required'] && form.controls['horario'].touched">
-                    Seleccione una hora *
-                </label>
-                <label *ngIf="!(form.controls['horario'].errors?.['required'] && form.controls['horario'].touched)">
-                    Seleccione una hora
-                </label>
-                <div class="col esp mb-3" *ngFor="let horario of this.horarios">
-                    <div class="card card-body" (click)="SeleccionarHorario(horario)">
-                        <h6 class="my-0">{{horario}}</h6>
-                    </div>
-                </div>
-                <input type="text" class="form-control w-50" [value]="this.form.value.horario" formControlName="horario" readonly>    
+                <input type="text" class="form-control w-50" [value]="this.dia" formControlName="fecha" readonly>    
             </div>
 
             <div *ngIf="this.userService.EsAdmin()">

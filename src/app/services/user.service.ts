@@ -38,6 +38,7 @@ export class UserService {
   
   LogOut()
   {
+    this.logueado = false;
     return this.auth.signOut();
   }
 
@@ -99,9 +100,9 @@ export class UserService {
     return this.firestore.collection<any>(coleccion).valueChanges({idField: "id"});
   }
 
-  SubirColeccion(esp:any, coleccion:string)
+  SubirColeccion(datos:any, coleccion:string)
   {
-    return this.firestore.collection(coleccion).add(esp);
+    return this.firestore.collection(coleccion).add(datos);
   }
 
   EditarColeccion(id:string, datos:any, tipo:string)

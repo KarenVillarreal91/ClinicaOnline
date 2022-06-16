@@ -35,7 +35,7 @@
 
             <label>Seleccione una especialidad</label>
             <div class="input-group mb-3">
-              <app-especialidades (especialidadSeleccionadaEmitter)="SeleccionarEsp($event)"></app-especialidades>
+              <app-especialidades [especialidades]="this.especialidades" (especialidadSeleccionadaEmitter)="SeleccionarEsp($event)"></app-especialidades>
             </div>
             <small class="invalid" *ngIf="formEspecialista.controls['especialidad'].errors?.['required'] && formEspecialista.controls['especialidad'].touched">
                 Seleccione o ingrese.

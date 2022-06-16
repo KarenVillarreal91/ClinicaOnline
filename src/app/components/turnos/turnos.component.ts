@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -11,7 +12,7 @@ export class TurnosComponent implements OnInit {
 
   @Input() inputTurnos:any = "";
 
-  constructor(public userService:UserService) 
+  constructor(public userService:UserService, private router:Router) 
   { }
 
   ngOnInit(): void {
@@ -28,8 +29,14 @@ export class TurnosComponent implements OnInit {
           res.estado = estado;
         }
         
-        this.userService.EditarColeccion(turno.id, res, 'turnos');
+        this.userService.EditarColeccion(turno.id, res, 'turnos').then(()=>{
+          if(estado == 'Finalizado')
+          {
+            this.router.navigateByUrl('historiaClinica');
+          }
+        });
       });
+
     }
     else
     {

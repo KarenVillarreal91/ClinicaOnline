@@ -11,7 +11,6 @@ import { environment } from 'src/environments/environment.prod';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
-import { AltaAdminComponent } from './components/alta-admin/alta-admin.component';
 import { HomeComponent } from './components/home/home.component';
 import { EspecialistasComponent } from './components/especialistas/especialistas.component';
 import { PacientesComponent } from './components/pacientes/pacientes.component';
@@ -22,6 +21,8 @@ import { EspecialidadesComponent } from './components/especialidades/especialida
 import { MiPerfilComponent } from './components/mi-perfil/mi-perfil.component';
 import { MisHorariosComponent } from './components/mis-horarios/mis-horarios.component';
 import { TurnosComponent } from './components/turnos/turnos.component';
+import { HistoriaClinicaComponent } from './components/historia-clinica/historia-clinica.component';
+import { TablaHistoriaClinicaComponent } from './components/tabla-historia-clinica/tabla-historia-clinica.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,6 @@ import { TurnosComponent } from './components/turnos/turnos.component';
     RegistroComponent,
     HomeComponent,
     UsuariosComponent,
-    AltaAdminComponent,
     EspecialistasComponent,
     PacientesComponent,
     MisTurnosComponent,
@@ -39,7 +39,9 @@ import { TurnosComponent } from './components/turnos/turnos.component';
     EspecialidadesComponent,
     MiPerfilComponent,
     MisHorariosComponent,
-    TurnosComponent
+    TurnosComponent,
+    HistoriaClinicaComponent,
+    TablaHistoriaClinicaComponent
   ],
   imports: [
     BrowserModule,

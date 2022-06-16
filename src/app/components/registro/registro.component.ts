@@ -112,7 +112,7 @@ export class RegistroComponent implements OnInit {
 
       if(!encontro)
       {
-        this.userService.SubirColeccion({nombre: datos.especialidad}, 'especialidades');
+        this.userService.SubirColeccion({nombre: datos.especialidad, foto: 'https://cdn-icons-png.flaticon.com/512/1396/1396199.png'}, 'especialidades');
       }
       
       let user = {nombre: datos.nombre, apellido: datos.apellido, dni: datos.dni, edad: datos.edad, 
@@ -168,7 +168,7 @@ export class RegistroComponent implements OnInit {
     this.userService.Registro(datos)
     .then((res:any)=>{
         let user = {nombre: datos.nombre, apellido: datos.apellido, dni: datos.dni, edad: datos.edad, 
-        obra: datos.obra, email: datos.email, turnos: []};
+        obra: datos.obra, email: datos.email, turnos: [], historiaClinica: []};
         
         this.spinner = true;
 

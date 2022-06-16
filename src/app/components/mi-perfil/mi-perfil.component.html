@@ -37,6 +37,10 @@
               <input type="text" [value]="horario.datos" readonly>
               <button (click)="GuardarHorario()" [disabled]="horario.datos == ''">Guardar</button>
             </div>
-        </div>
+
+          </div>
+          <div *ngIf="this.userService.userLogueado.historiaClinica">
+            <app-tabla-historia-clinica [inputPaciente]="this.userService.userLogueado"></app-tabla-historia-clinica>
+          </div>
     </div>
 </div>

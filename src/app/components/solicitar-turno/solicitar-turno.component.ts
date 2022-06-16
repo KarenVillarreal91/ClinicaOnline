@@ -12,10 +12,11 @@ import Swal from 'sweetalert2';
 export class SolicitarTurnoComponent implements OnInit {
 
   form !: FormGroup;
-  especialistas:Array<any> = [];
+  especialidades:Array<any> = [];
+  especialidadesMostrar:Array<any> = [];
   especialistaSeleccionado:any;
   especialistaNombre:string = "";
-  dias:Array<Date> = [];
+  dias:Array<string> = [];
   dia:string = "";
   horarios:Array<any> = [];
   pacienteActual:any;
@@ -25,9 +26,8 @@ export class SolicitarTurnoComponent implements OnInit {
     this.form = this.fb.group({
       'especialidad':['', Validators.required],
       'especialista':['', Validators.required],
-      'dia':['', Validators.required],
+      'fecha':['', Validators.required],
       'paciente':['', Validators.required],
-      'horario':['', Validators.required],
       'estado':['Solicitado'],
       'encuesta':[false]
     });
@@ -42,6 +42,12 @@ export class SolicitarTurnoComponent implements OnInit {
 
   ngOnInit(): void 
   {
+    
+  }
+
+  Dias()
+  {
+    this.dias = [];
     let date:Date = new Date();
     let dia:Date;
 
@@ -51,103 +57,94 @@ export class SolicitarTurnoComponent implements OnInit {
 
       if(dia.toDateString().split(" ")[0] != "Sun")
       {
-        this.dias.push(dia);
+        let diaString = dia.toDateString().split(' ')[0];
+
+        switch(diaString)
+        {
+          case 'Mon':
+            diaString = 'Lunes';
+          break;
+
+          case 'Tue':
+            diaString = 'Martes';
+          break;
+          
+          case 'Wed':
+            diaString = 'Miercoles';
+          break;
+          
+          case 'Thu':
+            diaString = 'Jueves';
+          break;
+          
+          case 'Fri':
+            diaString = 'Viernes';
+          break;
+          
+          case 'Sat':
+            diaString = 'Sábado';
+          break;
+        }
+
+        for(let item of this.especialistaSeleccionado.horarios)
+        {
+          if(item.split(' ')[0] == diaString)
+          {
+            for(let i = 1; i < item.split(' ').length; i++)
+            {
+              this.dias.push(`${("0" + dia.getDate()).slice(-2)}-${("0" + (dia.getMonth() + 1)).slice(-2)} ${item.split(' ')[i]}`);
+            }
+
+            break;
+          }
+        }
       }
     }
   }
 
-  FiltrarEspecialista()
+  FiltrarEspecialidad()
   {
-    this.especialistas = this.userService.especialistas.filter(esp =>{
-      let ret = false;
+    this.especialidadesMostrar = [];
 
-      for(let item of esp.especialidad)
+    this.userService.GetColeccion('especialidades').subscribe((data)=>{
+      for(let item of data)
       {
-        if(item == this.form.value.especialidad)
+        for(let esp of this.especialidades)
         {
-          ret = true;
+          if(item.nombre == esp)
+          {
+            this.especialidadesMostrar.push(item);
+          }
         }
       }
-
-      return ret;
-    });
-  }
-
-  SeleccionarEspecialidad(e:any)
-  {
-    this.form.controls['especialista'].setValue('');
-    this.form.controls['dia'].setValue('');
-    this.form.controls['horario'].setValue('');
-
-    this.form.controls['especialidad'].setValue(e.nombre);
+    })
   }
 
   SeleccionarEspecialista(esp:any)
   {
-    this.form.controls['dia'].setValue('');
-    this.form.controls['horario'].setValue('');
+    this.form.controls['especialidad'].setValue('');
+    this.form.controls['fecha'].setValue('');
 
     this.especialistaSeleccionado = esp;
+    this.especialidades = esp.especialidad;
+    this.FiltrarEspecialidad();
+    this.Dias();
     this.especialistaNombre = `${esp.nombre} ${esp.apellido}`;
     this.form.controls['especialista'].setValue(esp.dni);
   }
   
-  SeleccionarDia(dia:Date)
+  SeleccionarEspecialidad(e:any)
   {
-    this.form.controls['horario'].setValue('');
+    this.form.controls['fecha'].setValue('');
 
-    this.horarios = [];
-    this.dia = dia.toLocaleDateString();
-    this.form.controls['dia'].setValue(this.dia);
-
-    let diaString = dia.toDateString().split(' ')[0];
-
-    switch(diaString)
-    {
-      case 'Mon':
-        diaString = 'Lunes';
-      break;
-
-      case 'Tue':
-        diaString = 'Martes';
-      break;
-      
-      case 'Wed':
-        diaString = 'Miercoles';
-      break;
-      
-      case 'Thu':
-        diaString = 'Jueves';
-      break;
-      
-      case 'Fri':
-        diaString = 'Viernes';
-      break;
-      
-      case 'Sat':
-        diaString = 'Sábado';
-      break;
-    }
-
-    for(let item of this.especialistaSeleccionado.horarios)
-    {
-      if(item.split(' ')[0] == diaString)
-      {
-        for(let i = 1; i < item.split(' ').length; i++)
-        {
-          this.horarios.push(item.split(' ')[i]);
-        }
-
-        break;
-      }
-    }
+    this.form.controls['especialidad'].setValue(e.nombre);
   }
 
-  SeleccionarHorario(horario:string)
+  SeleccionarFecha(fecha:any)
   {
-    this.form.controls['horario'].setValue(horario);
+    this.dia = fecha;
+    this.form.controls['fecha'].setValue(fecha); 
   }
-
 
   SeleccionarPaciente(paciente:any)
   {
