@@ -1,6 +1,14 @@
 <div style="text-align: center;" *ngIf="this.userService.EsAdmin()">
-    <button type="button" (click)="Excel()">Descargar Excel</button>
+    <button type="button" (click)="ExcelUsuarios()">Descargar Excel</button>
 </div>
 <app-especialistas *ngIf="this.userService.EsAdmin()"></app-especialistas>
 <app-pacientes [pacientes]="pacientes" (pacienteSeleccionadoEmitter)="SeleccionarPaciente($event)"></app-pacientes>
-<app-tabla-historia-clinica [inputPaciente]="historia"></app-tabla-historia-clinica>
+
+<div *ngIf="turnos.length > 0 && this.userService.userLogueado.especialidad">
+    <section class="py-5 text-center container">
+        <h1 class="fw-light">Turnos del paciente</h1>
+    </section>
+    <app-turnos [inputTurnos]="turnos"></app-turnos>
+</div>
+
+<app-tabla-historia-clinica *ngIf="historia" [inputPaciente]="historia"></app-tabla-historia-clinica>

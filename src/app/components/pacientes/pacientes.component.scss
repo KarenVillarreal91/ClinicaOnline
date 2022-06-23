@@ -32,3 +32,50 @@ b{
 	    transform: scale(0.95);
     }
 }
+
+.esp p
+{
+    text-align: initial;
+    margin-left: 20px;
+    background: #e1e1e1;
+    padding: 7px;
+    margin-bottom: 7px;
+    border-radius: 20px;
+}
+
+.esp button
+{
+    height: 100px; 
+    width: 100px; 
+    border-radius: 50%;
+}
+
+.btn-success{
+    --bs-btn-bg: #e3e3e3;
+    --bs-btn-border-color: #e5e5e5;
+    --bs-btn-hover-bg: #c7c7c7;
+    --bs-btn-hover-border-color: #cfcfcf;
+    --bs-btn-hover-color: #cfcfcf;
+    --bs-btn-focus-shadow-rgb: #cfcfcf;
+    --bs-btn-active-color: #cfcfcf;
+    --bs-btn-active-bg: #cfcfcf;
+    --bs-btn-active-border-color: #cfcfcf;
+}
+
+.fade-in-top {
+	animation: fade-in-top 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.fade-in-top2 {
+	animation: fade-in-top 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.2s both;
+}
+
+.fade-in-top3 {
+	animation: fade-in-top 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.4s both;
+}
+
+.fade-in-top4 {
+	animation: fade-in-top 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.6s both;
+}
+
+@keyframes fade-in-top{0%{transform:translateY(-50px);opacity:0}100%{transform:translateY(0);opacity:1}}

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { display } from 'html2canvas/dist/types/css/property-descriptors/display';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,6 +13,8 @@ export class PacientesComponent implements OnInit {
 
   @Input() pacientes:any;
 
+  selAnterior:string = '';
+
   constructor(public userService:UserService) 
   { 
   }
@@ -21,5 +24,17 @@ export class PacientesComponent implements OnInit {
   SeleccionarPaciente(seleccion:any)
   {
     this.pacienteSeleccionadoEmitter.emit(seleccion);
+
+    let ref:any = document.getElementById(seleccion.id);
+
+    if(this.selAnterior != '')
+    {
+      let refAnterior:any = document.getElementById(this.selAnterior);
+      refAnterior.hidden = true;
+    }
+
+    this.selAnterior = seleccion.id;
+
+    ref.hidden = false;
   }
 }

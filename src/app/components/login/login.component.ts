@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   {
     this.userService.Login({email: this.form.value.email, clave: this.form.value.clave})
     .then((res:any)=>{
-
+      
       if(!res.user.emailVerified)
       {
         if(this.userService.EsAdmin())
@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
           setTimeout(() => {
             this.spinner = false;  
             this.userService.logueado = true;
-            this.router.navigateByUrl('home');
           }, 2000);
+          
         }
         else
         {
@@ -71,8 +71,8 @@ export class LoginComponent implements OnInit {
           setTimeout(() => {
             this.spinner = false;  
             this.userService.logueado = true;
-            this.router.navigateByUrl('home');
           }, 2000);
+
         }
         else
         {
@@ -93,8 +93,21 @@ export class LoginComponent implements OnInit {
         } 
       }
 
-      this.userService.GetUsuarioActual();
+      setTimeout(() => {
+        if(this.userService.logueado)
+        {
+          let date = new Date();
 
+          let userLog = { 
+            email: this.form.value.email,
+            fecha: date.toLocaleString('es-ES',{dateStyle:'full'}) + ', ' + date.getHours() + ':' + date.getMinutes()
+          }
+
+          this.userService.SubirColeccion(userLog, 'logs');
+          this.userService.GetUsuarioActual();
+          this.router.navigateByUrl('home');
+        }
+      }, 2000);
     }).catch((error)=>{
       if(error.code == 'auth/wrong-password' || error.code == 'auth/user-not-found')
       {

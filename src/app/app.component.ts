@@ -10,15 +10,23 @@ import { UserService } from './services/user.service';
 export class AppComponent {
   title = 'ClinicaOnline';
 
+  spinner:boolean = false;
+
   constructor(public userService: UserService, private router:Router)
   {}
 
   async LogOut()
   {
-    this.userService.LogOut()
-    .then(()=>{
-      this.userService.logueado = false;
-      this.router.navigateByUrl('login');
-    });
+    this.spinner = true;
+
+    setTimeout(() => {
+      this.spinner = false;
+            
+      this.userService.LogOut()
+      .then(()=>{
+        this.userService.logueado = false;
+        this.router.navigateByUrl('login');
+      });
+    }, 2000);
   }
 }

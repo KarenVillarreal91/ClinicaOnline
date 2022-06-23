@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AltaAdminComponent } from './components/alta-admin/alta-admin.component';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { HistoriaClinicaComponent } from './components/historia-clinica/historia-clinica.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path:"solicitarTurno", component:SolicitarTurnoComponent, canActivate:[GuardGuard]},
   {path:"miPerfil", component:MiPerfilComponent, canActivate:[GuardGuard]},
   {path:"historiaClinica", component:HistoriaClinicaComponent, canActivate:[GuardGuard]},
+  {path:"informes", component:EstadisticasComponent, canActivate:[GuardGuard]},
   {path:"", redirectTo:"/login",pathMatch:"full"},
   {path:"**", redirectTo:"/login"}
 ];

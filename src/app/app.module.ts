@@ -23,6 +23,7 @@ import { MisHorariosComponent } from './components/mis-horarios/mis-horarios.com
 import { TurnosComponent } from './components/turnos/turnos.component';
 import { HistoriaClinicaComponent } from './components/historia-clinica/historia-clinica.component';
 import { TablaHistoriaClinicaComponent } from './components/tabla-historia-clinica/tabla-historia-clinica.component';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { TablaHistoriaClinicaComponent } from './components/tabla-historia-clini
     MisHorariosComponent,
     TurnosComponent,
     HistoriaClinicaComponent,
-    TablaHistoriaClinicaComponent
+    TablaHistoriaClinicaComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,

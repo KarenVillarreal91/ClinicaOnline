@@ -14,6 +14,8 @@ export class UsuariosComponent implements OnInit {
 
   historia:any;
   pacientes:Array<any> = [];
+  turnos:Array<any> = [];
+  turnosExcel:Array<any> = [];
 
   constructor(public userService:UserService) 
   { 
@@ -42,9 +44,58 @@ export class UsuariosComponent implements OnInit {
   SeleccionarPaciente(e:any)
   {
     this.historia = e;
+
+    let turnosSub = this.userService.GetColeccion('turnos').subscribe((data)=>{
+      this.turnos = [];
+
+      for(let turno of data)
+      {
+        for(let turnoId of e.turnos)
+        {
+          if(turnoId == turno.id)
+          {
+            this.turnosExcel.push(turno);
+
+            if(turno.estado == 'Finalizado')
+            {
+              this.turnos.push(turno);
+              break;
+            }
+          } 
+        }
+      }
+
+      if(!this.userService.userLogueado.especialidad)
+      {
+        this.ExcelTurnos(e.nombre + '-' + e.apellido);
+      }
+
+      turnosSub.unsubscribe();
+    });
   }
 
-  Excel()
+  ExcelTurnos(paciente:string)
+  {
+    const workbook = new ExcelJS.Workbook();
+    const sheet = workbook.addWorksheet('Turnos');
+    let header = ["Fecha", "DNI Paciente", "Especialidad", "DNI Especialista", "Estado", "Comentario Esp", "Comentario Pac"];
+    
+    sheet.addRow(header);
+
+    for(let turno of this.turnosExcel)
+    {
+      let fila = [turno.fecha, turno.paciente, turno.especialidad, turno.especialista, turno.estado, turno.comentario, turno.comentarioPaciente];      
+
+      sheet.addRow(fila);
+    }
+
+    workbook.xlsx.writeBuffer().then((data : any) => {
+      let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      fileSaver.saveAs(blob, `Turnos-${paciente}.xlsx`);
+    });
+  }
+
+  ExcelUsuarios()
   {
     const workbook = new ExcelJS.Workbook();
     const sheet = workbook.addWorksheet('Usuarios');
@@ -53,12 +104,6 @@ export class UsuariosComponent implements OnInit {
     sheet.addRow(header);
 
     let usuarios = this.userService.pacientes.concat(this.userService.especialistas);
-
-    usuarios = usuarios.map((usuario:any)=>{
-        
-
-        return usuario;
-    });
 
     for(let usuario of usuarios)
     {

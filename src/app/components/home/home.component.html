@@ -1,8 +1,8 @@
-<div style="text-align: center;">
+<div class="slide-in-right" style="text-align: center;">
     <h1 class="text-dark">Bienvenido</h1>
 </div>
 
-<div class="album py-5 bg-light">
+<div class="album py-5 bg-light slide-in-right">
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" *ngIf="this.userService.EsAdmin()">
             <div class="col user">
@@ -59,6 +59,18 @@
                         <h5>Turnos</h5><hr>
                         <p>Lista de turnos de la clínica.</p><br>
                         <button type="button" class="btn btn-light" routerLink="../misTurnos">Ver</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col user">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-pie-chart-fill" viewBox="0 0 16 16">
+                            <path d="M15.985 8.5H8.207l-5.5 5.5a8 8 0 0 0 13.277-5.5zM2 13.292A8 8 0 0 1 7.5.015v7.778l-5.5 5.5zM8.5.015V7.5h7.485A8.001 8.001 0 0 0 8.5.015z"/>
+                          </svg>
+                        <h5>Informes y estadísticas</h5><hr>
+                        <p>Gráficos e informes de los turnos y los ingresos al sistema.</p>
+                        <button type="button" class="btn btn-light" routerLink="../informes">Ver</button>
                     </div>
                 </div>
             </div>
