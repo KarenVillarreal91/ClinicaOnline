@@ -3,6 +3,8 @@ import { Chart, registerables } from 'chart.js';
 import { UserService } from 'src/app/services/user.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import * as Highcharts from 'highcharts';
+import { HighchartsChartComponent } from 'highcharts-angular';
 
 @Component({
   selector: 'app-estadisticas',
@@ -35,6 +37,10 @@ export class EstadisticasComponent implements OnInit {
     })
 
     userService.GetColeccion('logs').subscribe((data)=>{
+      data.sort((x,y)=>{
+        return x.sort - y.sort;
+      });
+
       this.logs = data;
     })
   }
@@ -46,7 +52,8 @@ export class EstadisticasComponent implements OnInit {
   {
     let sub = this.userService.GetColeccion('turnos').subscribe((data)=>{
       this.turnos = data; 
-      this.doughnutChartTurnosEsp();   
+      this.doughnutChartTurnosEsp();  
+      this.graficoTurnoPorDia(); 
       sub.unsubscribe();
     });
   }
@@ -66,60 +73,139 @@ export class EstadisticasComponent implements OnInit {
     })
   } 
 
-  doughnutChartTurnosEsp() {
-
+  doughnutChartTurnosEsp() 
+  {
     let valoresPorPuntaje:Array<any> = [];
    
     for(let esp of this.especialidades)
     {
-      valoresPorPuntaje.push({especialidad: esp.nombre, cantidad: 0});
+      valoresPorPuntaje.push({name: esp.nombre, y: 0});
     }
     
     this.turnos.forEach( (turno:any) => {
 
       for(let valor of valoresPorPuntaje)
       {
-        if(turno.especialidad == valor.especialidad)
+        if(turno.especialidad == valor.name)
         {
-          valor.cantidad++;
+          valor.y++;
+        }
+      }
+    });
+
+    valoresPorPuntaje = valoresPorPuntaje.filter(e=> e.y != 0);
+
+    const chart = Highcharts.chart('TurnoPorEsp', {
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+      },
+      colors: ['rgb(46, 231, 108)',
+      'rgb(255, 206, 86)',
+      'rgb(247, 98, 98)',
+      'rgb(58, 201, 255)',
+      'rgb(202, 143, 255)',
+      'rgb(255, 168, 188)']
+      ,
+      title: {
+          text: 'Turnos por especialidad'
+      },
+      tooltip: {
+          pointFormat: 'Porcentaje: <b>{point.percentage:.1f}%</b>'
+      },
+      accessibility: {
+          point: {
+              valueSuffix: '%'
+          }
+      },
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  format: '<b>{point.name}</b><br>Turnos: {point.y}'
+              }
+          }
+      },
+      series: [{
+          name: 'Brands',
+          colorByPoint: true,
+          data: valoresPorPuntaje
+      }]
+    } as any);
+  }
+
+  graficoTurnoPorDia()
+  {
+    let valoresPorPuntaje:Array<any> = [];
+    let dia:any;
+   
+    for(let turno of this.turnos)
+    {
+      dia = turno.fecha.split(' ')[0];
+
+      if(!valoresPorPuntaje.some(e=>e.name == dia))
+      {
+        valoresPorPuntaje.push({name: dia, y: 0});
+      }
+    }
+    
+    this.turnos.forEach( (turno:any) => {
+
+      dia = turno.fecha.split(' ')[0];
+
+      for(let valor of valoresPorPuntaje)
+      {
+        if(dia == valor.name)
+        {
+          valor.y++;
         }
       }
     });
     
-    let labels = [];
-    let data = [];
-
-    for(let valor of valoresPorPuntaje)
-    {
-      labels.push(valor.especialidad);
-      data.push(valor.cantidad);
-    }
-
-    this.doughnutChart = new Chart(this.turnosPorEsp.nativeElement, {
-      type: 'doughnut',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Turnos por especialidad',
-          data: data,
-          backgroundColor: [
-            'rgb(46, 231, 108)',
-            'rgb(255, 206, 86)',
-            'rgb(212, 65, 65)',
-            'rgb(58, 201, 255)',
-            'rgb(202, 143, 255)',
-            'rgb(255, 168, 188)'
-          ],
-          hoverBackgroundColor: [
-            'rgb(46, 231, 108, 0.5)',
-            'rgb(255, 206, 86, 0.5)',
-            'rgb(212, 65, 65, 0.5)',
-            'rgb(58, 201, 255, 0.5)',
-            'rgb(202, 143, 255, 0.5)',
-            'rgb(255, 168, 188, 0.5)'
-          ]
-        }]
-      }
-    });
+    const chart = Highcharts.chart('TurnoPorDia', {
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie'
+      },
+      colors: ['rgb(46, 231, 108)',
+      'rgb(255, 206, 86)',
+      'rgb(247, 98, 98)',
+      'rgb(58, 201, 255)',
+      'rgb(202, 143, 255)',
+      'rgb(255, 168, 188)']
+      ,
+      title: {
+          text: 'Turnos por día'
+      },
+      tooltip: {
+          pointFormat: 'Porcentaje: <b>{point.percentage:.1f}%</b>'
+      },
+      accessibility: {
+          point: {
+              valueSuffix: '%'
+          }
+      },
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  format: '<b>Día: {point.name}</b><br>Turnos: {point.y}'
+              }
+          }
+      },
+      series: [{
+          name: 'Brands',
+          colorByPoint: true,
+          data: valoresPorPuntaje
+      }]
+    } as any);
   }
 }

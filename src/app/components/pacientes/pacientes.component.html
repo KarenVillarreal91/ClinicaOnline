@@ -7,14 +7,14 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
             <div class="col user" *ngFor="let user of this.pacientes">
-                <div class="card shadow-sm" (click)="SeleccionarPaciente(user)" *ngIf="!userService.userLogueado.especialidad">
+                <div class="card shadow-sm" appOscurecer appPresionar (click)="SeleccionarPaciente(user)" *ngIf="!userService.userLogueado.especialidad">
                     <div class="card-body">     
                         <img [src]="user.foto" width="100px" height="100px" style="border-radius: 50%;">
                         <img [src]="user.foto2" width="100px" height="100px" style="border-radius: 50%;">
                         <h5>{{user.nombre}} {{user.apellido}}</h5>
                         <p><b>Obra social: </b>{{user.obra}}</p>
                         <p><b>Edad: </b>{{user.edad}}</p>
-                        <p><b>DNI: </b>{{user.dni}}</p>
+                        <p><b>DNI: </b>{{user.dni | dni}}</p>
                         <p><b>Correo: </b>{{user.email}}</p>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                     <div [id]="user.id" [hidden]="true" >
                         <p class="fade-in-top"><b>Obra social: </b>{{user.obra}}</p>
                         <p class="fade-in-top2"><b>Edad: </b>{{user.edad}}</p>
-                        <p class="fade-in-top3"><b>DNI: </b>{{user.dni}}</p>
+                        <p class="fade-in-top3"><b>DNI: </b>{{user.dni | dni}}</p>
                         <p class="fade-in-top4"><b>Correo: </b>{{user.email}}</p>
                     </div>
                 </div>

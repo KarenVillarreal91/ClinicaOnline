@@ -100,7 +100,8 @@ export class LoginComponent implements OnInit {
 
           let userLog = { 
             email: this.form.value.email,
-            fecha: date.toLocaleString('es-ES',{dateStyle:'full'}) + ', ' + date.getHours() + ':' + date.getMinutes()
+            fecha: date.toLocaleString('es-ES',{dateStyle:'full'}) + ', ' + date.getHours() + ':' + date.getMinutes(),
+            sort: Date.now()
           }
 
           this.userService.SubirColeccion(userLog, 'logs');

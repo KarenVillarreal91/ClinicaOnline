@@ -26,7 +26,7 @@
             <p><b>Nombre: </b>{{this.userService.userLogueado.nombre}}</p><hr><br>
             <p><b>Apellido: </b>{{this.userService.userLogueado.apellido}}</p><hr><br>
             <p><b>Edad: </b>{{this.userService.userLogueado.edad}}</p><hr><br>
-            <p><b>DNI: </b>{{this.userService.userLogueado.dni}}</p><hr><br>
+            <p><b>DNI: </b>{{this.userService.userLogueado.dni | dni}}</p><hr><br>
             <div *ngIf="this.userService.userLogueado.obra"><p><b>Obra social: </b>{{this.userService.userLogueado.obra}}</p><hr><br></div>
             <p><b>Correo electrónico: </b>{{this.userService.userLogueado.email}}</p><hr><br>
             

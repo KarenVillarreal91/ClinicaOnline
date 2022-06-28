@@ -17,7 +17,7 @@
                         <div class="card shadow-sm">
                             <div class="card-body">     
                                 <h5>Datos</h5><br>
-                                <p><b>Especialista: </b>{{historia.especialista}}</p>
+                                <p><b>Especialista: </b>{{historia.especialista | dni}}</p>
                                 <p><b>Altura: </b>{{historia.altura}}m</p>
                                 <p><b>Peso: </b>{{historia.peso}}kg</p>
                                 <p><b>Temperatura: </b>{{historia.temperatura}}°</p>
@@ -35,7 +35,7 @@
                         <div class="card shadow-sm">
                             <div class="card-body">     
                                 <h5>Datos</h5><br>
-                                <p><b>Especialista: </b>{{historia.especialista}}</p>
+                                <p><b>Especialista: </b>{{historia.especialista | dni}}</p>
                                 <p><b>Altura: </b>{{historia.altura}}m</p>
                                 <p><b>Peso: </b>{{historia.peso}}kg</p>
                                 <p><b>Temperatura: </b>{{historia.temperatura}}°</p>
@@ -60,7 +60,7 @@
         <div class="col esp mb-3" *ngFor="let esp of especialistas">
             <div class="card card-body-sel" (click)="SeleccionarEsp(esp)">
                 <h6>{{esp.nombre}} {{esp.apellido}}</h6>
-                <p><b>DNI: </b>{{esp.dni}}</p>
+                <p><b>DNI: </b>{{esp.dni | dni}}</p>
             </div>
         </div><br>
         <button type="button" (click)="historial = inputPaciente.historiaClinica">Mostrar todos</button>

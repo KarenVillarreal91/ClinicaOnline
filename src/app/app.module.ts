@@ -24,6 +24,12 @@ import { TurnosComponent } from './components/turnos/turnos.component';
 import { HistoriaClinicaComponent } from './components/historia-clinica/historia-clinica.component';
 import { TablaHistoriaClinicaComponent } from './components/tabla-historia-clinica/tabla-historia-clinica.component';
 import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
+import { OscurecerDirective } from './directives/oscurecer.directive';
+import { PresionarDirective } from './directives/presionar.directive';
+import { DniPipe } from './pipes/dni.pipe';
+import { AnimacionBotonDirective } from './directives/animacion-boton.directive';
+import { EspecialistaPipe } from './pipes/especialista.pipe';
+import { PacientePipe } from './pipes/paciente.pipe';
 
 @NgModule({
   declarations: [
@@ -43,7 +49,13 @@ import { EstadisticasComponent } from './components/estadisticas/estadisticas.co
     TurnosComponent,
     HistoriaClinicaComponent,
     TablaHistoriaClinicaComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    OscurecerDirective,
+    PresionarDirective,
+    DniPipe,
+    AnimacionBotonDirective,
+    EspecialistaPipe,
+    PacientePipe
   ],
   imports: [
     BrowserModule,

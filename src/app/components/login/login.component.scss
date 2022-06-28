@@ -113,9 +113,6 @@ input {
 	margin: 0 5px;
 	height: 40px;
 	width: 60px;
-	&:hover{
-		background-color: darken($color: #DDDDDD, $amount: 10);
-	}
 }
 
 .container {

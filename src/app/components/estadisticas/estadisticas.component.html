@@ -1,3 +1,8 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
 <div #informe>
     <section class="py-5 text-center container">
         <h1 class="fw-light">Informes y estadísticas</h1>
@@ -8,29 +13,33 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 
                 <div class="card shadow-sm" style="margin: auto;">
-                    <div class="card-body text-center">   
-                        <label style="margin-bottom: 20px;">Turnos por especialidad</label>
-                        <canvas #turnosPorEsp style="position: relative; height:20vh; width:40vw"></canvas>
-                    </div>
+                    <div class="card-body text-center" id="TurnoPorEsp"></div>
                 </div>
-            </div><br>
-            <div class="card shadow-sm">
-                <div class="card-body text-center">   
-                    <label style="margin-bottom: 20px;">Informe de ingresos al sistema</label>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th scope="col">Fecha y hora</th>
-                            <th scope="col">Usuario</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr *ngFor="let log of logs">
-                            <td>{{log.fecha}}</td>
-                            <td>{{log.email}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+
+                <div class="card shadow-sm" style="margin: auto;">
+                    <div class="card-body text-center" id="TurnoPorDia"></div>
+                </div>
+            </div>
+            <br>
+            <div class="row row-cols-1">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">   
+                        <label style="margin-bottom: 20px;">Informe de ingresos al sistema</label>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Fecha y hora</th>
+                                <th scope="col">Usuario</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let log of logs">
+                                <td>{{log.fecha}}</td>
+                                <td>{{log.email}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

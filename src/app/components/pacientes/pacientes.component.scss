@@ -23,16 +23,6 @@ b{
     margin-top: 15px;
 }
 
-.card{
-    &:hover{
-		background-color: darken($color: #ffffff, $amount: 10);
-        cursor:pointer;
-	}
-    &:active{
-	    transform: scale(0.95);
-    }
-}
-
 .esp p
 {
     text-align: initial;
