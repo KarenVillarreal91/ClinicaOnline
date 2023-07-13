@@ -15,6 +15,16 @@ h5{
     margin-top: 15px;
 }
 
+.card{
+    max-width: 370px;
+    min-width: 260px;
+    min-height: 290px;
+}
+
+.container{
+    width: fit-content;
+}
+
 button{
     background: #05afaf;
     color: white;
@@ -24,12 +34,12 @@ button{
     }
 }
 
-.slide-in-right {
-	animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+.slide-in-bottom {
+	-webkit-animation: slide-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: slide-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
-@keyframes slide-in-right{0%{transform:translateX(1000px);opacity:0}100%{transform:translateX(0);opacity:1}}
-
+@-webkit-keyframes slide-in-bottom{0%{-webkit-transform:translateY(1000px);transform:translateY(1000px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}@keyframes slide-in-bottom{0%{-webkit-transform:translateY(1000px);transform:translateY(1000px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}
 
 .shake-bottom {
 	animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
